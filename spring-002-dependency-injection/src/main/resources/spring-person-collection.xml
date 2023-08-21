@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="person" class="com.powernode.spring.bean.Person">
+
+        <property name="properties">
+            <!--注入properties属性类对象-->
+            <props>
+                <prop key="driver">com.mysql.cj.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/mybatis</prop>
+                <prop key="username">root</prop>
+                <prop key="password">123</prop>
+            </props>
+        </property>
+
+
+        <!--注入map-->
+        <property name="phones">
+            <map>
+                <!--如果key和value不是简单类型就用这个配置-->
+               <!-- <entry key-ref="" value-ref=""/>-->
+
+
+                <entry key="1" value="110"/>
+                <entry key="2" value="120"/>
+                <entry key="3" value="119"/>
+                <entry key="4" value="999"/>
+            </map>
+        </property>
+
+        <property name="names" >
+            <!--list集合有序可重复-->
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+                <value>张三</value>
+            </list>
+        </property>
+        <!--set集合无序不可重复-->
+        <property name="addrs">
+            <set>
+                <value>北京大兴</value>
+                <value>北京海淀</value>
+                <value>北京丰台</value>
+                <value>北京丰台</value>
+            </set>
+        </property>
+    </bean>
+</beans>

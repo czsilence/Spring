@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--2通过简单工厂模式-->
+    <!--factory-method简单工厂模式使用-->
+    <!--factory-method属性指定的是工厂类当中的静态方法-->
+    <bean id="sf" class="com.powernode.spring.bean.StartFactory" factory-method="get"/>
+
+    <!--3通过工厂方法模式-->
+    <!---->
+    <bean id="gf" class="com.powernode.spring.bean.GunFactory"/><!--实际就是一个FactoryBean-->
+    <!--以下的配置很关键，factory-bean属性告诉spring调用哪个对象。factory-method告诉spring调用该对象的哪个方法-->
+    <bean id="gun" factory-method="get" factory-bean="gf"></bean>
+
+    <!--4通过FactoryBean接口实例化,第三种方式的简化-->
+    <!--由于编写的类是实现了FactoryBean接口，是一个特殊的类，不需要手动指定factory-bean，factory-method-->
+    <!--通过一个工厂bean返回一个普通的bean person对象-->
+    <bean id="person" class="com.powernode.spring.bean.PersonFactoryBean"></bean>
+
+</beans>

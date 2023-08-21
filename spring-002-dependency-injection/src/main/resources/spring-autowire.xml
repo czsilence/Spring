@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--根据名字自动装配-->
+    <bean id="OrderService" class="com.powernode.spring.service.OrderService" autowire="byName"></bean>
+    <!--以下这个id要和属性名一样-->
+    <bean id="orderDao" class="com.powernode.spring.dao.OrderDao"/>
+
+
+    <!--根据类型自动装配-->
+    <!--自动装配是基于set方法的-->
+    <!--根据类型进行自动装配的时候，在有效的配置文件中某种类型的实例只能有一个-->
+    <bean id="UserDao" class="com.powernode.spring.dao.UserDao"></bean>
+    <!--<bean id="dao" class="com.powernode.spring.dao.UserDao"></bean>-->
+    <bean id="VipDao" class="com.powernode.spring.dao.VipDao"></bean>
+    <bean id="cs" class="com.powernode.spring.service.CustomerService" autowire="byType"></bean>
+
+</beans>

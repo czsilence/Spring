@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cat" class="com.powernode.spring.bean.Cat">
+        <!--不给属性注入，属性的默认值就是null-->
+       <!-- <property name="name" value="tom"></property>-->
+        <!--注入空字符串-->
+        <!-- <property name="name" value=""></property>-->
+        <property name="name" value="tom"></property>
+        <property name="age" value="23"></property>
+    </bean>
+
+    <!--让spring管理数据源-->
+    <bean id="MyDateSourceBean" class="com.powernode.spring.jdbc.MyDateSource">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+        <property name="username" value="root"/>
+        <property name="password" value="chenzhen011116."/>
+    </bean>
+
+
+    <!--注入简单类型-->
+    <bean id="userBean" class="com.powernode.spring.bean.User">
+        <!--重点：如果是给简单类型赋值，就不能使用ref了，需要使用value-->
+        <property name="username" value="张三"/>
+        <property name="password" value="123"/>
+        <property name="age" value="23"/>
+    </bean>
+
+
+    <!--定义bean-->
+    <bean id="OrderDaoBean" class="com.powernode.spring.dao.OrderDao"/>
+
+    <bean id="OrderServiceBean" class="com.powernode.spring.service.OrderService">
+        <!--注入外部bean-->
+        <property name="orderDao" ref="OrderDaoBean"/>
+    </bean>
+
+    <bean id="OrderServiceBean2" class="com.powernode.spring.service.OrderService">
+        <property name="orderDao">
+            <!--在property标签中使用嵌套的bean标签，。这是内部bean-->
+            <bean class="com.powernode.spring.dao.OrderDao"></bean>
+        </property>
+    </bean>
+</beans>

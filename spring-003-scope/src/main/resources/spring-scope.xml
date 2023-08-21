@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--目前scope属性有两个值：
+            第一个值：singleton 单例
+            第二个值：prototype 原型/多例
+            其实scope属性有多个值：
+                例如：request  session
+                该要求必须是web应用，当引用springmvc框架就可以使用
+    -->
+    <bean id="sb" class="com.powernode.spring.bean.SpringBean" scope="prototype"></bean>
+</beans>
